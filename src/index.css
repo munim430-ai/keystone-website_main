@@ -1,0 +1,64 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+@theme {
+  /* === KEYSTONE BRAND COLORS (matched exactly from logo) === */
+
+  /* Primary Navy Blue — from the "Key" text and K lettermark */
+  --color-brand-blue:        #1B2E6B;
+  --color-brand-blue-light:  #2A45A0;
+  --color-brand-blue-dark:   #0F1A40;
+
+  /* Primary Red — from the airplane and "stone" text */
+  --color-brand-red:         #D91E18;
+  --color-brand-red-light:   #F02020;
+  --color-brand-red-dark:    #A81410;
+
+  /* Neutral / UI */
+  --color-surface:           #F7F8FC;
+  --color-surface-dark:      #0F1A40;
+
+  /* Typography */
+  --font-sans:    "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Barlow", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply text-slate-900 antialiased;
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+}
+
+/* Glassmorphism utility */
+.glass {
+  @apply bg-white/70 backdrop-blur-md border border-white/20;
+}
+
+/* Custom scrollbar — branded navy */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F8FC;
+}
+::-webkit-scrollbar-thumb {
+  background: #1B2E6B;
+  border-radius: 99px;
+  border: 2px solid #F7F8FC;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D91E18;
+}
+
+/* Selection color — brand blue tint */
+::selection {
+  background: rgba(27, 46, 107, 0.15);
+  color: #1B2E6B;
+}
