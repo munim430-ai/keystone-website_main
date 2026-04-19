@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { Target, Globe, Heart, Award, Users, CheckCircle, Facebook, Mail } from 'lucide-react';
 
 const teamMembers = [
@@ -33,7 +34,12 @@ const milestones = [
 
 const About = () => {
   return (
-    <div className="pt-24 pb-0 overflow-hidden">
+    <>
+    <Helmet>
+      <title>About Us — Keystone Education Consultancy</title>
+      <meta name="description" content="Meet the team behind Keystone Education. Founded in 2022 by Hasibul Munim — 9 years in South Korea — helping 500+ Bangladeshi students study abroad." />
+    </Helmet>
+    <div className="pt-24 pb-24 lg:pb-0 overflow-hidden">
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-brand-blue-dark via-[#1a2b6d] to-brand-blue-dark py-24 overflow-hidden">
@@ -236,6 +242,7 @@ const About = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

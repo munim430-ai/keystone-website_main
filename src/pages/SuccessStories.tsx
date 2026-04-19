@@ -1,5 +1,7 @@
 import { motion } from 'motion/react';
-import { Star, MapPin, GraduationCap, Quote, ArrowRight } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+import { Star, GraduationCap, Quote, ArrowRight } from 'lucide-react';
+import { WHATSAPP_CONSULTATION } from '../constants';
 
 const successStories = [
   {
@@ -106,7 +108,12 @@ const galleryImages = [
 
 const SuccessStories = () => {
   return (
-    <div className="pt-24 overflow-hidden">
+    <>
+    <Helmet>
+      <title>Student Success Stories — Keystone Education Consultancy</title>
+      <meta name="description" content="Real stories from 500+ Bangladeshi students who studied in South Korea, Malaysia, Canada and more with Keystone Education's help." />
+    </Helmet>
+    <div className="pt-24 pb-24 lg:pb-0 overflow-hidden">
 
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-brand-blue-dark to-brand-blue py-20 overflow-hidden">
@@ -268,7 +275,7 @@ const SuccessStories = () => {
           <h2 className="text-4xl font-extrabold mb-4">Ready to Write Your Success Story?</h2>
           <p className="text-red-100 text-lg mb-8">Join 1,000+ students who trusted Keystone to guide them to universities worldwide.</p>
           <a
-            href="https://wa.me/8801941646278?text=Hi%2C%20I%20want%20to%20start%20my%20study%20abroad%20journey!"
+            href={WHATSAPP_CONSULTATION}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-white text-brand-red font-bold px-8 py-4 rounded-full hover:shadow-2xl hover:scale-105 transition-all"
@@ -278,6 +285,7 @@ const SuccessStories = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

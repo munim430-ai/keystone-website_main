@@ -1,17 +1,23 @@
-import { Component, type ReactNode } from 'react';
+import React from 'react';
 
-interface Props { children: ReactNode }
+interface Props { children: React.ReactNode }
 interface State { hasError: boolean }
 
-export default class ErrorBoundary extends Component<Props, State> {
-  state: State = { hasError: false };
+// Workaround: useDefineForClassFields:false + experimentalDecorators causes
+// TypeScript to lose this.props/this.state types — cast through unknown to recover them.
+class ErrorBoundary extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    (this as unknown as { state: State }).state = { hasError: false };
+  }
 
   static getDerivedStateFromError(): State {
     return { hasError: true };
   }
 
   render() {
-    if (this.state.hasError) {
+    const self = this as unknown as { state: State; props: Props };
+    if (self.state.hasError) {
       return (
         <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
           <div className="text-6xl mb-4">⚠️</div>
@@ -26,6 +32,8 @@ export default class ErrorBoundary extends Component<Props, State> {
         </div>
       );
     }
-    return this.props.children;
+    return self.props.children as React.ReactElement;
   }
 }
+
+export default ErrorBoundary;
