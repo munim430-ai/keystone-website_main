@@ -13,7 +13,7 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-slate-50 font-sans selection:bg-brand-blue/20 selection:text-brand-blue">
+      <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-700">
         <Navbar />
         <main>
           <Routes>
@@ -27,7 +27,7 @@ export default function App() {
                 <div className="text-8xl mb-6">🌍</div>
                 <h1 className="text-4xl font-extrabold text-slate-900 mb-4">Page Not Found</h1>
                 <p className="text-slate-500 mb-8 text-lg">This destination doesn't exist yet.</p>
-                <a href="/" className="bg-brand-blue text-white font-bold px-8 py-4 rounded-full hover:bg-brand-red transition-all">
+                <a href="/" className="bg-blue-600 text-white font-bold px-8 py-4 rounded-full hover:bg-blue-700 transition-all">
                   Go Back Home
                 </a>
               </div>
