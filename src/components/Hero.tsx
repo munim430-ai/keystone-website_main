@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { MessageCircle, ArrowRight, Star, GraduationCap } from 'lucide-react';
+import { motion } from 'motion/react';
+import { ArrowRight, Star, GraduationCap, Play } from 'lucide-react';
 
 const AnimatedGlobe: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -52,13 +53,13 @@ const AnimatedGlobe: React.FC = () => {
       ctx!.clearRect(0, 0, W, H);
 
       const grad = ctx!.createRadialGradient(cx - R*0.3, cy - R*0.3, R*0.1, cx, cy, R);
-      grad.addColorStop(0, 'rgba(30,58,138,0.18)');
-      grad.addColorStop(1, 'rgba(10,20,80,0.08)');
+      grad.addColorStop(0, 'rgba(59,130,246,0.15)');
+      grad.addColorStop(1, 'rgba(14,165,233,0.06)');
       ctx!.beginPath();
       ctx!.arc(cx, cy, R, 0, Math.PI * 2);
       ctx!.fillStyle = grad;
       ctx!.fill();
-      ctx!.strokeStyle = 'rgba(99,140,255,0.2)';
+      ctx!.strokeStyle = 'rgba(59,130,246,0.25)';
       ctx!.lineWidth = 1.5;
       ctx!.stroke();
 
@@ -72,7 +73,7 @@ const AnimatedGlobe: React.FC = () => {
             if (first) { ctx!.moveTo(sx, sy); first = false; } else ctx!.lineTo(sx, sy);
           } else { first = true; }
         }
-        ctx!.strokeStyle = 'rgba(99,140,255,0.12)';
+        ctx!.strokeStyle = 'rgba(14,165,233,0.15)';
         ctx!.lineWidth = 0.8;
         ctx!.stroke();
       }
@@ -87,7 +88,7 @@ const AnimatedGlobe: React.FC = () => {
             if (first) { ctx!.moveTo(sx, sy); first = false; } else ctx!.lineTo(sx, sy);
           } else { first = true; }
         }
-        ctx!.strokeStyle = 'rgba(99,140,255,0.12)';
+        ctx!.strokeStyle = 'rgba(14,165,233,0.15)';
         ctx!.lineWidth = 0.8;
         ctx!.stroke();
       }
@@ -101,8 +102,8 @@ const AnimatedGlobe: React.FC = () => {
           const mx = (ax+bx)/2, my = (ay+by)/2;
           const dist = Math.sqrt((bx-ax)**2+(by-ay)**2);
           const arcGrad = ctx!.createLinearGradient(ax,ay,bx,by);
-          arcGrad.addColorStop(0, 'rgba(239,68,68,0.8)');
-          arcGrad.addColorStop(1, 'rgba(99,140,255,0.4)');
+          arcGrad.addColorStop(0, 'rgba(245,158,11,0.8)');
+          arcGrad.addColorStop(1, 'rgba(59,130,246,0.4)');
           ctx!.beginPath();
           ctx!.moveTo(ax, ay);
           ctx!.quadraticCurveTo(mx, my - dist*0.35, bx, by);
@@ -124,12 +125,12 @@ const AnimatedGlobe: React.FC = () => {
             const pulse = Math.sin(Date.now()/400)*0.5+0.5;
             ctx!.beginPath();
             ctx!.arc(sx, sy, d.size*3*pulse+d.size, 0, Math.PI*2);
-            ctx!.fillStyle = `rgba(239,68,68,${0.15*pulse})`;
+            ctx!.fillStyle = `rgba(245,158,11,${0.15*pulse})`;
             ctx!.fill();
           }
           ctx!.beginPath();
           ctx!.arc(sx, sy, d.size, 0, Math.PI*2);
-          ctx!.fillStyle = isDhaka ? 'rgba(239,68,68,1)' : isHub ? 'rgba(147,197,253,0.9)' : `rgba(99,140,255,${d.opacity})`;
+          ctx!.fillStyle = isDhaka ? 'rgba(245,158,11,1)' : isHub ? 'rgba(147,197,253,0.9)' : `rgba(14,165,233,${d.opacity})`;
           ctx!.fill();
         }
       });
@@ -147,49 +148,58 @@ const AnimatedGlobe: React.FC = () => {
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-white pt-20 pb-16 lg:pt-32 lg:pb-24">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full border border-slate-100 opacity-50" />
-        <div className="absolute top-[5%] right-[-5%] w-[400px] h-[400px] rounded-full border border-slate-100 opacity-50" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full border border-slate-50 opacity-50" />
-        <div className="absolute inset-0 opacity-[0.03]"
-          style={{ backgroundImage: 'radial-gradient(#0f172a 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }} />
+    <section className="relative overflow-hidden bg-gradient-to-b from-white to-sky-50 pt-20 pb-16 lg:pt-32 lg:pb-24">
+      {/* Background decorative blobs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-blue-100 to-sky-50 blur-3xl opacity-60" />
+        <div className="absolute -bottom-16 -left-16 w-[400px] h-[400px] rounded-full bg-blue-50 blur-2xl opacity-50" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
-          <div className="flex-1 text-center lg:text-left max-w-2xl">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-6">
+          {/* Left column */}
+          <motion.div
+            className="flex-1 text-center lg:text-left max-w-2xl"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 mb-6">
               <span className="flex h-2 w-2 rounded-full bg-brand-blue animate-pulse" />
-              <span className="text-xs font-bold text-brand-blue uppercase tracking-wider">Keystone Education Consultancy</span>
+              <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">Keystone Education Consultancy</span>
             </div>
-            <p className="text-brand-blue font-medium italic mb-2 tracking-wide">"Where global dreams begin."</p>
+            <p className="text-sky-500 font-semibold mb-2 tracking-wide">"Where global dreams begin."</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight mb-6">
-              Your Gateway to <span className="text-brand-blue">Global Education.</span>
+              Your Gateway to{' '}
+              <span className="text-gradient-blue">Global Education.</span>
             </h1>
             <p className="text-lg text-slate-600 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
               Empowering Bangladeshi students to achieve their international education goals with excellence.
-              We provide expert guidance for admissions to top-tier universities in South Korea, the UK, and the USA.
+              Expert guidance for admissions to top-tier universities in South Korea, Canada, Europe and beyond.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
-              <a
+              <motion.a
                 href="https://forms.gle/grR8xEBQG9rUCmjV7"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-brand-blue-dark text-white px-8 py-4 rounded-full font-semibold transition-all hover:bg-brand-blue hover:shadow-xl active:scale-95 group"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-full font-semibold transition-all hover:bg-blue-500 hover:shadow-xl hover:shadow-blue-200 active:scale-95 group"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
-                <MessageCircle size={20} className="text-green-400" />
                 Start Your Journey
                 <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-              </a>
-              <a
-                href="/services"
-                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-full font-semibold transition-all hover:bg-slate-50 hover:border-slate-300 active:scale-95"
+              </motion.a>
+              <motion.a
+                href="/success-stories"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-transparent text-blue-600 border-2 border-blue-200 px-8 py-4 rounded-full font-semibold transition-all hover:bg-blue-50 hover:border-blue-300 active:scale-95 group"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
-                Explore Services
-              </a>
+                <Play size={16} className="fill-blue-600" />
+                Watch Success Stories
+              </motion.a>
             </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-3 py-4 border-t border-slate-100">
@@ -202,40 +212,46 @@ const Hero: React.FC = () => {
               </div>
               <div className="flex flex-col items-center sm:items-start">
                 <div className="flex items-center gap-1 mb-1">
-                  {[1,2,3,4,5].map((i) => <Star key={i} size={14} className="fill-blue-600 text-brand-blue" />)}
+                  {[1,2,3,4,5].map((i) => <Star key={i} size={14} className="fill-blue-600 text-blue-600" />)}
                 </div>
                 <p className="text-sm text-slate-500 font-medium">
                   Trusted by <span className="text-slate-900 font-bold">500+ Students</span> across Bangladesh
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex-1 relative w-full max-w-xl lg:max-w-none flex items-center justify-center">
+          {/* Right column — globe */}
+          <motion.div
+            className="flex-1 relative w-full max-w-xl lg:max-w-none flex items-center justify-center"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+          >
             <div className="relative z-10 w-full flex flex-col items-center">
               <div className="relative w-[320px] h-[320px] lg:w-[440px] lg:h-[440px]">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-100 via-blue-50 to-transparent blur-2xl opacity-70" />
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-100 via-sky-50 to-transparent blur-2xl opacity-70" />
                 <AnimatedGlobe />
-                <div className="absolute top-4 right-0 bg-white shadow-lg border border-slate-100 rounded-2xl px-3 py-2 flex items-center gap-2 text-sm font-semibold text-slate-700 animate-bounce" style={{animationDuration:'3s'}}>
+                <div className="absolute top-4 right-0 bg-white shadow-lg border border-blue-100 rounded-2xl px-3 py-2 flex items-center gap-2 text-sm font-semibold text-slate-700 animate-bounce" style={{animationDuration:'3s'}}>
                   🇰🇷 South Korea
                 </div>
-                <div className="absolute bottom-10 right-0 bg-white shadow-lg border border-slate-100 rounded-2xl px-3 py-2 flex items-center gap-2 text-sm font-semibold text-slate-700 animate-bounce" style={{animationDuration:'4s',animationDelay:'0.5s'}}>
+                <div className="absolute bottom-10 right-0 bg-white shadow-lg border border-blue-100 rounded-2xl px-3 py-2 flex items-center gap-2 text-sm font-semibold text-slate-700 animate-bounce" style={{animationDuration:'4s',animationDelay:'0.5s'}}>
                   🇬🇧 United Kingdom
                 </div>
-                <div className="absolute bottom-10 left-0 bg-white shadow-lg border border-slate-100 rounded-2xl px-3 py-2 flex items-center gap-2 text-sm font-semibold text-slate-700 animate-bounce" style={{animationDuration:'3.5s',animationDelay:'1s'}}>
+                <div className="absolute bottom-10 left-0 bg-white shadow-lg border border-blue-100 rounded-2xl px-3 py-2 flex items-center gap-2 text-sm font-semibold text-slate-700 animate-bounce" style={{animationDuration:'3.5s',animationDelay:'1s'}}>
                   🇨🇦 Canada
                 </div>
-                <div className="absolute top-4 left-0 bg-white shadow-lg border border-slate-100 rounded-2xl px-3 py-2 flex items-center gap-2 text-sm font-semibold text-slate-700 animate-bounce" style={{animationDuration:'4.5s',animationDelay:'0.2s'}}>
+                <div className="absolute top-4 left-0 bg-white shadow-lg border border-blue-100 rounded-2xl px-3 py-2 flex items-center gap-2 text-sm font-semibold text-slate-700 animate-bounce" style={{animationDuration:'4.5s',animationDelay:'0.2s'}}>
                   🇲🇾 Malaysia
                 </div>
               </div>
 
-              <div className="mt-4 bg-white shadow-xl border border-slate-100 rounded-2xl px-6 py-4 flex items-center gap-4">
-                <div className="bg-brand-blue p-3 rounded-xl text-white">
+              <div className="mt-4 bg-white shadow-xl border border-blue-100 rounded-2xl px-6 py-4 flex items-center gap-4">
+                <div className="bg-blue-600 p-3 rounded-xl text-white">
                   <GraduationCap size={24} />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-brand-blue uppercase tracking-wider">Success Rate</p>
+                  <p className="text-xs font-bold text-blue-600 uppercase tracking-wider">Success Rate</p>
                   <p className="text-lg font-bold text-slate-900">98% Visa Approval</p>
                 </div>
                 <div className="ml-4 pl-4 border-l border-slate-100">
@@ -244,8 +260,8 @@ const Hero: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="absolute -top-6 -right-6 w-full h-full bg-blue-50 rounded-2xl -z-10" />
-          </div>
+            <div className="absolute -top-6 -right-6 w-full h-full bg-gradient-to-br from-blue-50 to-sky-50 rounded-2xl -z-10" />
+          </motion.div>
 
         </div>
       </div>
