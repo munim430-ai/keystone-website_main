@@ -7,8 +7,8 @@ const services = [
     icon: <Users size={36} />,
     title: 'Student Counseling',
     tagline: 'Your journey starts with the right conversation.',
-    color: 'from-brand-blue to-brand-blue-light',
-    lightColor: 'bg-brand-blue/10 text-brand-blue',
+    color: 'from-blue-600 to-sky-500',
+    lightColor: 'bg-blue-100 text-blue-600',
     description:
       'Our expert counselors take time to understand your academic background, career goals, financial situation, and personal preferences. We build a tailored roadmap that matches you with the right country, university, and program.',
     steps: [
@@ -25,8 +25,8 @@ const services = [
     icon: <BookOpen size={36} />,
     title: 'Admission Processing',
     tagline: 'We take care of every form, every deadline.',
-    color: 'from-brand-red to-brand-red-dark',
-    lightColor: 'bg-brand-red/10 text-brand-red',
+    color: 'from-amber-500 to-orange-500',
+    lightColor: 'bg-amber-100 text-amber-600',
     description:
       'From drafting a compelling Statement of Purpose to submitting the final application, our team handles every step of the university admission process. We have deep relationships with admission offices across 15+ countries.',
     steps: [
@@ -79,7 +79,7 @@ const services = [
     icon: <FileText size={36} />,
     title: 'Scholarship Assistance',
     tagline: 'Funding your dream — not just finding it.',
-    color: 'from-amber-500 to-orange-600',
+    color: 'from-amber-400 to-orange-600',
     lightColor: 'bg-amber-100 text-amber-700',
     description:
       'We actively search for scholarships that match your profile — including the GKS (Global Korea Scholarship), Erasmus+, Malaysian university scholarships, and more. Our team helps you write winning scholarship applications.',
@@ -117,20 +117,17 @@ const Services = () => {
     <div className="pt-24 overflow-hidden">
 
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-brand-blue-dark to-brand-blue py-20 overflow-hidden">
-        <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: 'radial-gradient(#ffffff 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}
-        />
-        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-brand-red/10 blur-3xl" />
+      <section className="relative bg-gradient-to-br from-blue-600 to-sky-500 py-20 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-white/10 blur-3xl" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-            <span className="inline-block bg-brand-red/20 text-red-300 font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-full mb-6 border border-red-400/20">
+            <span className="inline-block bg-white/20 text-white font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-full mb-6 border border-white/30">
               What We Offer
             </span>
             <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6">
-              Our <span className="text-brand-red">Services</span>
+              Our <span className="text-sky-200">Services</span>
             </h1>
-            <p className="text-xl text-blue-200 max-w-2xl mx-auto">
+            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
               Complete end-to-end support for every stage of your international education journey — from the first question to landing in your dream country.
             </p>
           </motion.div>
@@ -209,9 +206,10 @@ const Services = () => {
       </section>
 
       {/* Process Overview */}
-      <section className="py-24 bg-slate-50">
+      <section className="py-24 bg-sky-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-blue-100 text-blue-600 font-bold uppercase tracking-widest text-xs mb-4">Simple Process</span>
             <h2 className="text-4xl font-bold text-slate-900 mb-4">How It Works</h2>
             <p className="text-slate-500 text-lg">From your first message to your first day on campus.</p>
           </div>
@@ -232,10 +230,10 @@ const Services = () => {
                 className="text-center relative"
               >
                 {i < 3 && (
-                  <div className="hidden md:block absolute top-8 left-[60%] w-[80%] h-0.5 bg-slate-200 z-0" />
+                  <div className="hidden md:block absolute top-8 left-[60%] w-[80%] h-0.5 bg-blue-200 z-0" />
                 )}
                 <div className="relative z-10">
-                  <div className="w-16 h-16 bg-brand-blue text-white rounded-full flex items-center justify-center font-extrabold text-xl mx-auto mb-4 shadow-lg">
+                  <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center font-extrabold text-xl mx-auto mb-4 shadow-lg">
                     {item.step}
                   </div>
                   <h4 className="font-bold text-slate-900 mb-2">{item.title}</h4>
@@ -248,15 +246,15 @@ const Services = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-brand-blue to-brand-blue-dark text-white text-center">
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-sky-500 text-white text-center">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-4xl font-extrabold mb-4">Ready to Get Started?</h2>
-          <p className="text-blue-200 text-lg mb-8">Your first consultation is free. No obligations, just honest advice.</p>
+          <p className="text-blue-100 text-lg mb-8">Your first consultation is free. No obligations, just honest advice.</p>
           <a
             href="https://wa.me/8801941646278?text=Hi%2C%20I%20would%20like%20a%20free%20consultation%20about%20studying%20abroad."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-brand-red hover:bg-red-600 text-white font-bold px-8 py-4 rounded-full transition-all hover:scale-105 hover:shadow-2xl"
+            className="inline-flex items-center gap-2 bg-white text-blue-700 font-bold px-8 py-4 rounded-full hover:bg-amber-400 hover:text-white transition-all hover:scale-105 hover:shadow-2xl"
           >
             <MessageCircle size={20} />
             Book Free Consultation
