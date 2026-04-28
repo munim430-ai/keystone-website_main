@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Star, MapPin, GraduationCap, Quote, ArrowRight } from 'lucide-react';
+import { Star, GraduationCap, Quote, ArrowRight } from 'lucide-react';
 
 const successStories = [
   {
@@ -77,7 +77,7 @@ const successStories = [
     name: 'Tasnim Hossain',
     country: 'Malaysia',
     flag: '🇲🇾',
-    university: 'Taylor\'s University',
+    university: "Taylor's University",
     program: 'BSc in Pharmacy',
     year: '2024',
     scholarship: 'Academic Excellence Award',
@@ -89,10 +89,10 @@ const successStories = [
 ];
 
 const stats = [
-  { value: '1,000+', label: 'Students Placed', icon: '🎓' },
-  { value: '98%', label: 'Visa Success Rate', icon: '✅' },
-  { value: '15+', label: 'Countries', icon: '🌍' },
-  { value: '10+', label: 'Years Experience', icon: '⭐' },
+  { value: '1,000+', label: 'Students Placed' },
+  { value: '98%', label: 'Visa Success Rate' },
+  { value: '15+', label: 'Countries' },
+  { value: '10+', label: 'Years Experience' },
 ];
 
 const galleryImages = [
@@ -109,29 +109,27 @@ const SuccessStories = () => {
     <div className="pt-24 overflow-hidden">
 
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-brand-blue-dark to-brand-blue py-20 overflow-hidden">
-        <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: 'radial-gradient(#ffffff 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}
-        />
+      <section className="relative bg-gradient-to-br from-blue-600 to-sky-500 py-20 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-white/10 blur-3xl" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-            <span className="inline-block bg-brand-red/20 text-red-300 font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-full mb-6 border border-red-400/20">
+            <span className="inline-block bg-white/20 text-white font-bold uppercase tracking-widest text-xs px-4 py-2 rounded-full mb-6 border border-white/30">
               Student Success
             </span>
             <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6">
-              Real Students, <span className="text-brand-red">Real Dreams</span>
+              Real Students, <span className="text-sky-200">Real Dreams</span>
             </h1>
-            <p className="text-xl text-blue-200 max-w-2xl mx-auto">
+            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
               Meet the students who trusted Keystone with their future — and are now thriving at universities around the world.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="bg-white border-b border-slate-100">
+      {/* Stats Bar — gradient version */}
+      <section className="bg-gradient-to-r from-blue-600 to-sky-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-slate-100">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/20">
             {stats.map((stat, i) => (
               <motion.div
                 key={i}
@@ -141,9 +139,8 @@ const SuccessStories = () => {
                 viewport={{ once: true }}
                 className="py-8 text-center"
               >
-                <div className="text-3xl mb-1">{stat.icon}</div>
-                <div className="text-3xl font-extrabold text-brand-blue">{stat.value}</div>
-                <div className="text-slate-500 text-sm mt-1">{stat.label}</div>
+                <div className="text-3xl font-extrabold text-white">{stat.value}</div>
+                <div className="text-blue-100 text-sm mt-1">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -151,10 +148,11 @@ const SuccessStories = () => {
       </section>
 
       {/* Success Stories Grid */}
-      <section className="py-24 bg-slate-50">
+      <section className="py-24 bg-sky-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Student Stories</h2>
+            <span className="inline-block px-4 py-1.5 rounded-full bg-blue-100 text-blue-600 font-bold uppercase tracking-widest text-xs mb-4">Stories</span>
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">Student <span className="text-gradient-blue">Stories</span></h2>
             <p className="text-slate-500 text-lg">Every success story starts with a single consultation.</p>
           </div>
 
@@ -166,7 +164,8 @@ const SuccessStories = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-slate-100 group"
+                whileHover={{ y: -4 }}
+                className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-slate-100 hover:border-blue-100 group"
               >
                 {/* Image + overlay */}
                 <div className="relative h-52 overflow-hidden">
@@ -175,13 +174,13 @@ const SuccessStories = () => {
                     alt={story.name}
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-blue-dark/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
                   <div className="absolute top-4 left-4 flex gap-2">
                     <span className="bg-white/90 text-slate-700 text-xs font-bold px-3 py-1 rounded-full">
                       {story.flag} {story.country}
                     </span>
                     {story.scholarship && (
-                      <span className="bg-brand-red/90 text-white text-xs font-bold px-3 py-1 rounded-full">
+                      <span className="bg-amber-500/90 text-white text-xs font-bold px-3 py-1 rounded-full">
                         🏆 Scholarship
                       </span>
                     )}
@@ -193,22 +192,19 @@ const SuccessStories = () => {
                 </div>
 
                 <div className="p-6">
-                  {/* Meta */}
                   <div className="flex items-center gap-3 mb-4 text-sm text-slate-500">
                     <div className="flex items-center gap-1">
-                      <GraduationCap size={14} className="text-brand-blue" />
+                      <GraduationCap size={14} className="text-blue-500" />
                       <span>{story.program}</span>
                     </div>
                   </div>
 
-                  {/* Stars */}
                   <div className="flex gap-1 mb-3">
                     {Array(story.rating).fill(0).map((_, i) => (
                       <Star key={i} size={14} className="fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
 
-                  {/* Quote */}
                   <div className="relative">
                     <Quote size={20} className="text-slate-200 absolute -top-1 -left-1" />
                     <p className="text-slate-600 text-sm leading-relaxed pl-4 italic">
@@ -216,10 +212,9 @@ const SuccessStories = () => {
                     </p>
                   </div>
 
-                  {/* Tags */}
                   <div className="flex flex-wrap gap-2 mt-4">
                     {story.tags.map((tag) => (
-                      <span key={tag} className="bg-slate-100 text-slate-600 text-xs font-medium px-2.5 py-1 rounded-full">
+                      <span key={tag} className="bg-blue-50 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-full border border-blue-100">
                         {tag}
                       </span>
                     ))}
@@ -235,6 +230,7 @@ const SuccessStories = () => {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-blue-100 text-blue-600 font-bold uppercase tracking-widest text-xs mb-4">Moments</span>
             <h2 className="text-4xl font-bold text-slate-900 mb-4">Our Gallery</h2>
             <p className="text-slate-500 text-lg">Moments from orientations, seminars, and student events.</p>
           </div>
@@ -263,15 +259,15 @@ const SuccessStories = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-brand-red to-brand-red-dark text-white text-center">
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-sky-500 text-white text-center">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-4xl font-extrabold mb-4">Ready to Write Your Success Story?</h2>
-          <p className="text-red-100 text-lg mb-8">Join 1,000+ students who trusted Keystone to guide them to universities worldwide.</p>
+          <p className="text-blue-100 text-lg mb-8">Join 1,000+ students who trusted Keystone to guide them to universities worldwide.</p>
           <a
             href="https://wa.me/8801941646278?text=Hi%2C%20I%20want%20to%20start%20my%20study%20abroad%20journey!"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-white text-brand-red font-bold px-8 py-4 rounded-full hover:shadow-2xl hover:scale-105 transition-all"
+            className="inline-flex items-center gap-2 bg-white text-blue-700 font-bold px-8 py-4 rounded-full hover:bg-amber-400 hover:text-white hover:shadow-2xl hover:scale-105 transition-all"
           >
             Start Your Journey <ArrowRight size={18} />
           </a>
