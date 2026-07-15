@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from 'react';
 
 interface CounterProps {
   end: number;
-  label: string;
+  label?: string;
   suffix?: string;
 }
 

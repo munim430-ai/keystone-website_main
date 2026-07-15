@@ -1,5 +1,7 @@
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { Users, BookOpen, Award, Plane, FileText, Globe, MessageCircle, ArrowRight, CheckCircle } from 'lucide-react';
+import { WHATSAPP_CONSULTATION } from '../constants';
 
 const services = [
   {
@@ -114,7 +116,12 @@ const services = [
 
 const Services = () => {
   return (
-    <div className="pt-24 overflow-hidden">
+    <>
+    <Helmet>
+      <title>Our Services — Keystone Education Consultancy</title>
+      <meta name="description" content="Student counseling, admission processing, visa guidance, scholarship assistance, pre-departure briefing and post-landing support. 98% visa approval rate." />
+    </Helmet>
+    <div className="pt-24 pb-24 lg:pb-0 overflow-hidden">
 
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-brand-blue-dark to-brand-blue py-20 overflow-hidden">
@@ -190,7 +197,7 @@ const Services = () => {
                       <h3 className="text-3xl font-extrabold mb-4">{service.title}</h3>
                       <p className="text-white/80 text-lg mb-8">{service.tagline}</p>
                       <a
-                        href={`https://wa.me/8801941646278?text=Hi%2C%20I%20want%20to%20know%20more%20about%20your%20${encodeURIComponent(service.title)}%20service.`}
+                        href={`https://wa.me/8801941646278?text=Hi%2C%20I%20want%20to%20know%20more%20about%20${encodeURIComponent(service.title)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 bg-white text-slate-900 font-bold px-6 py-3 rounded-full hover:shadow-xl hover:scale-105 transition-all text-sm"
@@ -253,7 +260,7 @@ const Services = () => {
           <h2 className="text-4xl font-extrabold mb-4">Ready to Get Started?</h2>
           <p className="text-blue-200 text-lg mb-8">Your first consultation is free. No obligations, just honest advice.</p>
           <a
-            href="https://wa.me/8801941646278?text=Hi%2C%20I%20would%20like%20a%20free%20consultation%20about%20studying%20abroad."
+            href={WHATSAPP_CONSULTATION}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-brand-red hover:bg-red-600 text-white font-bold px-8 py-4 rounded-full transition-all hover:scale-105 hover:shadow-2xl"
@@ -264,6 +271,7 @@ const Services = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 
